@@ -3,5 +3,5 @@
 
 To run this server, using this line
 ```python
-uvicorn main:app --reload
+uvicorn services.main:app --reload
 ```
