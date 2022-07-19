@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from services.api.api import main_router
+
 
 class Item(BaseModel):
     name:str
@@ -12,6 +14,8 @@ class ItemOutput(BaseModel):
     selling_price: int
 
 app = FastAPI()
+
+app.include_router(main_router)
 
 @app.get("/")
 async def root():
