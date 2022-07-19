@@ -10,9 +10,9 @@ import numpy as np
 
 import onnxruntime
 
-from yolox.data.data_augment import preproc as preprocess
-from yolox.data.datasets import COCO_CLASSES
-from yolox.utils import mkdir, multiclass_nms, demo_postprocess, vis
+from services.core.logic.YOLOX.yolox.data.data_augment import preproc as preprocess
+from services.core.logic.YOLOX.yolox.data.datasets import COCO_CLASSES
+from services.core.logic.YOLOX.yolox.utils import mkdir, multiclass_nms, demo_postprocess, vis
 
 
 def fashion_detector(images):

@@ -13,7 +13,7 @@ import numpy as np
 
 import torch
 
-from yolox.utils import gather, is_main_process, postprocess, synchronize, time_synchronized
+from services.core.logic.YOLOX.yolox.utils import gather, is_main_process, postprocess, synchronize, time_synchronized
 
 
 class VOCEvaluator:
