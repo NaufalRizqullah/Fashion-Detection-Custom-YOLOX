@@ -23,12 +23,12 @@ session = onnxruntime.InferenceSession(PATH_ONNX_MODEL)
 app.include_router(main_router)
 
 @app.get("/")
-def root():
+async def root():
     return {"Message": "Welcome"}
 
 
 @app.post("/itmes/", response_model=ItemOutput)
-def add_item(item: Item):
+async def add_item(item: Item):
     selling_price = item.price - item.discount
     return {
         "name": item.name,
