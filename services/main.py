@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+import onnxruntime
+
 from services.api.api import main_router
 
+PATH_ONNX_MODEL = "services/core/model/fashion_best_yolox_s.onnx"
 
 class Item(BaseModel):
     name:str
@@ -14,6 +17,8 @@ class ItemOutput(BaseModel):
     selling_price: int
 
 app = FastAPI()
+
+session = onnxruntime.InferenceSession(PATH_ONNX_MODEL)
 
 app.include_router(main_router)
 

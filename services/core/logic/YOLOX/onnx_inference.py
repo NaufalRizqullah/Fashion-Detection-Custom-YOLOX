@@ -2,23 +2,20 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) Megvii, Inc. and its affiliates.
 
-import argparse
-import os
 import time
 
 import cv2
 import numpy as np
-
-import onnxruntime
 
 from services.core.logic.YOLOX.yolox.data.data_augment import preproc as preprocess
 from services.core.logic.YOLOX.yolox.data.datasets import COCO_CLASSES
 from services.core.logic.YOLOX.yolox.utils import mkdir, multiclass_nms, demo_postprocess, vis
 from services.core.logic.YOLOX.yolox.data.datasets import COCO_CLASSES
 
+import services.main as s
+
 def fashion_detector(images):
-    
-    PATH_ONNX_MODEL = "services/core/model/fashion_best_yolox_s.onnx"
+
     SCORE_THRESHOLD = 0.1
 
     time_init = time.time()
@@ -31,10 +28,8 @@ def fashion_detector(images):
 
     img, ratio = preprocess(origin_img, input_shape)
 
-    session = onnxruntime.InferenceSession(PATH_ONNX_MODEL)
-
-    ort_inputs = {session.get_inputs()[0].name: img[None, :, :, :]}
-    output = session.run(None, ort_inputs)
+    ort_inputs = {s.session.get_inputs()[0].name: img[None, :, :, :]}
+    output = s.session.run(None, ort_inputs)
     predictions = demo_postprocess(output[0], input_shape, p6=False)[0]
 
     boxes = predictions[:, :4]
