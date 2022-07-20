@@ -13,7 +13,7 @@ import onnxruntime
 from services.core.logic.YOLOX.yolox.data.data_augment import preproc as preprocess
 from services.core.logic.YOLOX.yolox.data.datasets import COCO_CLASSES
 from services.core.logic.YOLOX.yolox.utils import mkdir, multiclass_nms, demo_postprocess, vis
-
+from services.core.logic.YOLOX.yolox.data.datasets import COCO_CLASSES
 
 def fashion_detector(images):
     
@@ -45,10 +45,13 @@ def fashion_detector(images):
         origin_img = vis(origin_img, final_boxes, final_scores, final_cls_inds,
                          conf=SCORE_THRESHOLD, class_names=COCO_CLASSES)
 
-    cv2.imwrite("services/core/upload/output.jpg", origin_img)
+    cv2.imwrite("services/core/output/output.jpg", origin_img)
+
+    classes_list = final_cls_inds.tolist()
+    classes_list = [COCO_CLASSES[int(idx)] for idx in classes_list]
 
     return {
         "boxes": final_boxes.tolist(),
         "scores": final_scores.tolist(),
-        "classes": final_cls_inds.tolist()
+        "classes": classes_list
     }
