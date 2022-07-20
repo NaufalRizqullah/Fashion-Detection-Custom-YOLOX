@@ -22,6 +22,10 @@ def fashion_detector(images):
 
     input_shape = (640, 640)
     origin_img = images
+    
+    # change BGR to RGB layer images
+    origin_img = cv2.cvtColor(images, cv2.COLOR_BGR2RGB)
+
     img, ratio = preprocess(origin_img, input_shape)
 
     session = onnxruntime.InferenceSession(PATH_ONNX_MODEL)
