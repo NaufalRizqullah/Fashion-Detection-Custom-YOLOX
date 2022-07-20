@@ -4,6 +4,7 @@
 
 import argparse
 import os
+import time
 
 import cv2
 import numpy as np
@@ -19,6 +20,8 @@ def fashion_detector(images):
     
     PATH_ONNX_MODEL = "services/core/model/fashion_best_yolox_s.onnx"
     SCORE_THRESHOLD = 0.1
+
+    time_init = time.time()
 
     input_shape = (640, 640)
     origin_img = images
@@ -49,12 +52,18 @@ def fashion_detector(images):
         origin_img = vis(origin_img, final_boxes, final_scores, final_cls_inds,
                          conf=SCORE_THRESHOLD, class_names=COCO_CLASSES)
 
-    cv2.imwrite("services/core/output/output.jpg", origin_img)
+    
+    time_elapsed = time.time() - time_init
+
+    print(f"Time -------------- {time_elapsed}")
+    # Render Output
+    # cv2.imwrite("services/core/output/output.jpg", origin_img)
 
     classes_list = final_cls_inds.tolist()
     classes_list = [COCO_CLASSES[int(idx)] for idx in classes_list]
 
     return {
+        "time_elapsed": str(time_elapsed),
         "boxes": final_boxes.tolist(),
         "scores": final_scores.tolist(),
         "classes": classes_list
