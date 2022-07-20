@@ -7,7 +7,7 @@ from loguru import logger
 
 import cv2
 import numpy as np
-from pycocotools.coco import COCO
+# from pycocotools.coco import COCO
 
 from ..dataloading import get_yolox_datadir
 from .datasets_wrapper import Dataset
