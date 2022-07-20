@@ -18,12 +18,12 @@ app = FastAPI()
 app.include_router(main_router)
 
 @app.get("/")
-async def root():
+def root():
     return {"Message": "Welcome"}
 
 
 @app.post("/itmes/", response_model=ItemOutput)
-async def add_item(item: Item):
+def add_item(item: Item):
     selling_price = item.price - item.discount
     return {
         "name": item.name,

@@ -17,7 +17,7 @@ from services.core.logic.YOLOX.yolox.utils import mkdir, multiclass_nms, demo_po
 
 def fashion_detector(images):
     
-    PATH_ONNX_MODEL = "../model/fashion_best_yolox_s.onnx/"
+    PATH_ONNX_MODEL = "services/core/model/fashion_best_yolox_s.onnx"
     SCORE_THRESHOLD = 0.1
 
     input_shape = (640, 640)
@@ -45,4 +45,10 @@ def fashion_detector(images):
         origin_img = vis(origin_img, final_boxes, final_scores, final_cls_inds,
                          conf=SCORE_THRESHOLD, class_names=COCO_CLASSES)
 
-    cv2.imwrite("output/output.jpg", origin_img)
+    cv2.imwrite("services/core/upload/output.jpg", origin_img)
+
+    return {
+        "boxes": final_boxes.tolist(),
+        "scores": final_scores.tolist(),
+        "classes": final_cls_inds.tolist()
+    }
