@@ -14,7 +14,7 @@ from services.core.logic.YOLOX.yolox.data.datasets import COCO_CLASSES
 
 import services.main as s
 
-def fashion_detector(images):
+def fashion_detector(images, return_image: bool = False):
 
     SCORE_THRESHOLD = 0.1
 
@@ -53,6 +53,9 @@ def fashion_detector(images):
     print(f"Time -------------- {time_elapsed}")
     # Render Output
     # cv2.imwrite("services/core/output/output.jpg", origin_img)
+
+    if (return_image):
+        return origin_img
 
     classes_list = final_cls_inds.tolist()
     classes_list = [COCO_CLASSES[int(idx)] for idx in classes_list]
