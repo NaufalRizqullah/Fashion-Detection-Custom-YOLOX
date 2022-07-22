@@ -1,21 +1,21 @@
 # Fashion Object Detection using YOLOX
 
-
-To run this server, using this line
-```python
-uvicorn services.main:app --reload
-```
-
-To run this server, using gunicorn this line
-```shell
-gunicorn services.main:app -w 4 -k uvicorn.workers.UvicornWorker
-```
-- -w, --workers = number of workers process
-- -k, --worker-class =  the type worker process to run
+[YOLOX](https://github.com/Megvii-BaseDetection/YOLOX) implementation in Image Fashion applying custom weights in training Dataset [Colorful Fashion Dataset For Object Detection](https://www.kaggle.com/datasets/nguyngiabol/colorful-fashion-dataset-for-object-detection) for object detection. Using YOLOX-s as base model for training 10 fashion classes. This application generates an API that may be used to identify fashion in images. Heroku, FastAPI, and PyTorch (YOLOX) are the technologies used.
 
 
-clone YOLOX, and after that install the dependencies
+Example result:
 
-```shell
-git clone https://github.com/Megvii-BaseDetection/YOLOX
-```
+**input**:
+
+![Fashion Detection!](test_image.jpeg "input")
+
+**output**:
+
+![Fashion Detection!](res.png "output")
+
+
+Visit Here for sample:
+
+> https://simple-fashion-detection.herokuapp.com/docs
+
+

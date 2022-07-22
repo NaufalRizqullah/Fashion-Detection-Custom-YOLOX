@@ -35,8 +35,8 @@ sniffio==1.2.0
 starlette==0.17.1
 tabulate==0.8.10
 thop==0.1.1.post2207130030
-torch==1.10.2+cpu
-torchvision==0.11.3+cpu
+torch @ http://download.pytorch.org/whl/cpu/torch-1.10.2%2Bcpu-cp38-cp38-linux_x86_64.whl
+torchvision @ http://download.pytorch.org/whl/cpu/torchvision-0.11.3%2Bcpu-cp38-cp38-linux_x86_64.whl
 tqdm==4.64.0
 typing-extensions==4.3.0
 ujson==4.3.0
