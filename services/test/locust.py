@@ -1,6 +1,6 @@
 
 
-from locust import HttpUser, SequentialTaskSet, task
+from services.test.locust import HttpUser, SequentialTaskSet, task
 
 
 class YoloxTask(SequentialTaskSet):
@@ -17,7 +17,7 @@ class YoloxTaskV2(SequentialTaskSet):
 
     @task
     def detection(self):
-        with open("test_image.jpeg", "rb") as image:
+        with open("../assets/test_image.jpeg", "rb") as image:
             self.client.post(
                 "/v1/detectv2",
                 files = {"im": image}

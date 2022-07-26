@@ -7,11 +7,11 @@ Example result:
 
 **input**:
 
-![Fashion Detection!](test_image.jpeg "input")
+![Fashion Detection!](services/assets/test_image.jpeg "input")
 
 **output**:
 
-![Fashion Detection!](res.png "output")
+![Fashion Detection!](services/assets/res.png "output")
 
 
 Visit Here for sample:
