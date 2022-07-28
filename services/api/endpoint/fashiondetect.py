@@ -34,11 +34,25 @@ async def fashion_detection_v2(im: UploadFile = File(...)):
         raise HTTPException(status_code=415, detail="Unsupported Type Image")
 
     image = Image.open(BytesIO(im.file.read()))
+    image = np.array(image)
 
     final_output = fashion_detector(np.array(image), True)
 
     # Source: https://www.pythonfixing.com/2022/04/fixed-render-numpy-array-in-fastapi.html
     
+    success, img = cv2.imencode('.png', final_output)
+
+    headers = {'Content-Disposition': f'inline; filename="{im.filename}"'}
+    return Response(img.tobytes(), headers=headers, media_type='image/png')
+
+
+@yolox_router.post("/detect/streamlit/demo")
+async def fashion_detection_v2(im: UploadFile = File(...)):
+
+    image = Image.open(BytesIO(im.file.read()))
+
+    final_output = fashion_detector(np.array(image), True)
+
     success, img = cv2.imencode('.png', final_output)
 
     headers = {'Content-Disposition': f'inline; filename="{im.filename}"'}
