@@ -4,8 +4,10 @@ RUN mkdir -p /home/app_fastapi
 
 COPY . /home/app_fastapi
 
+WORKDIR /home/app_fastapi
+
 RUN pip install \
     -r \
-    /home/app_fastapi/services/requirements.txt
+    services/requirements.txt
 
-CMD [ "uvicorn", "home.app_fastapi.services.main:app"]
+CMD [ "uvicorn", "services.main:app", "--host", "0.0.0.0", "--port", "8000"]
