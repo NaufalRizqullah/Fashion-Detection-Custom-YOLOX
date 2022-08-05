@@ -10,7 +10,7 @@ import streamlit as st
 
 
 # interact with FastAPI endpoint
-backend = "http://127.0.0.1:8000/v1/detect/streamlit/demo"
+backend = "http://localhost:8000/v1/detect/streamlit/demo"
 
 # function to connect backend
 def postToBackend(image, server_url: str):

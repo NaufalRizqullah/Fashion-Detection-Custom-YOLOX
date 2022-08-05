@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+  fastapi:
+    image: myapp-fastapi:1.0
+    ports:
+      - 8000:8000
+    networks:
+      - deploy_yolox_network
+    container_name: FASTAPI-YOLOX
+    
+  streamlit:
+    image: streamlit-yolox:1.0
+    ports:
+      - 8501:8501
+    networks:
+      - deploy_yolox_network
+    container_name: STREAMLIT-YOLOX
+
+networks:
+  deploy_yolox_network:
+    driver: bridge
