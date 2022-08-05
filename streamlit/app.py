@@ -19,6 +19,7 @@ def postToBackend(image, server_url: str):
 
     return requests.post(server_url, data=m, headers={"Content-Type": m.content_type}, timeout=8000)
 
+# sourcery skip: use-named-expression
 seeResult = False
 
 st.title("A simple Fashion Object Detection")
@@ -44,8 +45,9 @@ with st.form("my_form"):
         # Show Image after load
         # st.markdown('**_Input_**')
         # st.image(imageList, caption="Input Image", width=500)
-
-    if send := st.form_submit_button('Try Detect Fashion!'):
+    
+    send = st.form_submit_button('Try Detect Fashion!')
+    if send:
         if uploaded_file:
             st.markdown('**_Result_**')
 
