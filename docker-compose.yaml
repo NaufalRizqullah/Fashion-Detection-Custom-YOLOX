@@ -2,7 +2,7 @@ version: '3'
 services:
 
   fastapi:
-    image: myapp-fastapi:1.0
+    image: yolox-fastapi:1.0
     ports:
       - 8000:8000
     networks:
@@ -10,11 +10,13 @@ services:
     container_name: FASTAPI-YOLOX
     
   streamlit:
-    image: streamlit-yolox:1.0
+    image: yolox-streamlit:1.0
     ports:
       - 8501:8501
     networks:
       - deploy_yolox_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     container_name: STREAMLIT-YOLOX
 
 networks:
